@@ -3,7 +3,7 @@
 *Note*: We will include a server which we will use for each programing language example. It will be reachable @ `http://localhost:3344`
 
 For the purpose of this example, we will build an tiny section of a order confirmation frontend.
-The program should read and parse a list of the orders provided inside `examle_orders.txt` then place them into an array/list.
+The program should read and parse a list of the orders provided inside `example_orders.txt` then place them into an array/list.
 When looping over this list/array, if the order failed its payment, fire a event you created for this speffic case.
 This event should then send a messsage to the server, asking for confirmation that the payment did indeed fail. The server will then send a response back. The response will be a JSON object.
 
