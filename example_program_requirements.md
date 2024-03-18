@@ -58,12 +58,7 @@ const orders = [
 ]
 
 payment_failed_event.addAction(async (order_number: number) => {
-    const request = await fetch('http://localhost:3344', {
-        method: 'POST',
-        body: JSON.stringify({
-            'order_number': order_number
-        }),
-    });
+    const request = await fetch('http://localhost:3344/order/'+order_number);
 
     if (!request.ok) return;
 
