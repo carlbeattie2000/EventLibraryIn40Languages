@@ -218,10 +218,6 @@ false
 2024-03-18T21:07:00.000Z
 Europe/Paris
 
-2456909
--03-18T21:11:00.000Z
-Africa/Johannesburg
-
 2456910
 false
 2024-03-18T21:15:00.000Z
