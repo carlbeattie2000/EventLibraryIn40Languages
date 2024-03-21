@@ -11,7 +11,7 @@ Example program:
 ```ts
 class EventLocal {
     private action: Function | null;
-    
+
     constructor() {
         //...
         this.action = null;
