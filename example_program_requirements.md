@@ -1,6 +1,4 @@
-`The purpose of this document is to lay down what each example program using the library in each language should do.`
-
-*Note*: We will include a server which we will use for each programing language example. It will be reachable @ `http://localhost:3344`
+`The purpose of this document is to lay down what each library's base functionality should be and what each example program using the library in each language should do.`
 
 For the purpose of this example, we will build an tiny section of a order confirmation frontend.
 The program should read and parse a list of the orders provided inside `example_orders.txt` then place them into an array/list.
@@ -14,80 +12,6 @@ Each library should have the following:
 - Standardized Event Messages: Implement a standardized format.
 - Event Queue (Optional): Provide an event queue to support asynchronous event handling, ordering, prioritization, concurrency management, and backpressure handling.
 
-Example program:
-```ts
-class EventLocal {
-    private action: Function | null;
-
-    constructor() {
-        //...
-        this.action = null;
-    }
-
-    addAction(onTrigger: Function) {
-        //...
-        this.action = onTrigger;
-    }
-
-    trigger(...args: unknown[]) {
-        //...
-        if (this.action === null) return;
-        this.action(...args);
-    }
-}
-
-
-class Events {
-    constructor() {
-        //...
-    }
-
-    newEvent() {
-        //...
-        return new EventLocal();
-    }
-    //...
-}
-
-const events = new Events();
-const payment_failed_event = events.newEvent();
-const payment_failed_incorrect = events.newEvent();
-
-const orders = [
-    {
-        order_number: 24244,
-        payment_failed: false
-    },
-    {
-        order_number: 24245,
-        payment_failed: true
-    }
-]
-
-payment_failed_event.addAction(async (order_number: number) => {
-    const request = await fetch('http://localhost:3344/order/'+order_number);
-
-    if (!request.ok) return;
-
-    const response = await request.json();
-
-    if (response.payment_failed) return;
-
-    payment_failed_incorrect.trigger(order_number);
-});
-
-payment_failed_incorrect.addAction((order_number: number) => {
-    const order_index = orders.findIndex((order) => order.order_number === order_number);
-
-    if (order_index > -1) {
-        orders[order_index].payment_failed = false;
-    }
-})
-
-for (const order of orders) {
-    if (order.payment_failed) {
-        payment_failed_event.trigger(order.order_number);
-    }
-}
-```
-Or I might write some tests, I'll see.
+Example Program:
+This was going to be a order system, but I have a idea for a little game that I will write for each language,
+It will be fun and I'll learn so much more.
